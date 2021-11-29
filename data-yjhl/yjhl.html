@@ -3,66 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        body {
-            margin: 0;
-            background: #CCC;
-        }
-        .item {
-            margin-top: 10px;
-            display: flex;
-            background: #FFF;
-        }
-        .left-img {
-            display: flex;
-        }
-        .img-l {
-            
-        }
-        .img-r {
-            margin-left: 6px;
-        }
-        .img-1, .img-2, .img-3, .img-4 {
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
-        }
-        .img-2, .img-4 {
-            margin-top: 6px;
-        }
-        img {
-            width: 100%;
-            height: 100%;
-        }
-        .right-content {
-            flex: 1;
-            margin-left: 10px;
-        }
-        .text-item {
-            margin-top: 10px;
-            margin-left: 10px;
-            padding: 4px 10px;
-            border-radius: 16px;
-            background: #EEE;
-            display: inline-block;
-        }
-
-        .popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-        .popup img {
-            width: auto;
-            height: 100%;
-            max-width: 100%;
-            max-height: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="./yjhl.css">
 </head>
 <body>
     <div id="wrap" class="wrap"></div>
@@ -72,86 +13,10 @@
     </div>
 
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="yjhl.js"></script>
+    <script src="./data.js"></script>
+    <script src="./dateFormat.js"></script>
+    <script src="./yjhl.js"></script>
     <script>
-        Date.prototype.format = function(fmt) {
-            var o = {
-                "M+" : this.getMonth()+1,                 //月份
-                "d+" : this.getDate(),                    //日
-                "h+" : this.getHours(),                   //小时
-                "m+" : this.getMinutes(),                 //分
-                "s+" : this.getSeconds(),                 //秒
-                "q+" : Math.floor((this.getMonth()+3)/3), //季度
-                "S"  : this.getMilliseconds()             //毫秒
-            };
-            if(/(y+)/.test(fmt)) {
-                fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
-            }
-            for(var k in o) {
-                if(new RegExp("("+ k +")").test(fmt)){
-                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
-                }
-            }
-            return fmt;
-        }
-
-        function run() {
-            const arr = []
-            LIST.sort(function(a, b) {
-                return b.create_time - a.create_time
-            })
-            for (let i=0; i<LIST.length; i++) {
-                const item = LIST[i]
-                if (
-                    (item.education !== '研究生' && item.education !== '本科')
-                    || item.age > 31
-                    || item.born_data.includes('北京')
-                    || item.marriage === '离异'
-                ) {
-                    continue
-                }
-                const str = `
-                    <div class="item">
-                        <div class="left-img">
-                            <div class="img-l">
-                                <div class="img-1"><img src="${item.avatar}" alt=""></div>
-                                <div class="img-2"><img src="${item.upper}" alt=""></div>
-                            </div>
-                            <div class="img-r">
-                                <div class="img-3"><img src="${item.body}" alt=""></div>
-                                <div class="img-4"><img src="${item.headimgurl}" alt=""></div>
-                            </div>
-                        </div>
-                        <div class="right-content">
-                            <div class="text-item">id：${item.id}</div>
-                            <div class="text-item">创建时间：${new Date(item.create_time * 1000).format('yyyy-MM-dd hh:mm:ss')}</div><br>
-                            <div class="text-item">${item.realname}</div>
-                            <div class="text-item">${item.birthday}</div>
-                            <div class="text-item">${item.age}岁</div><br>
-                            <div class="text-item">${item.born_data}</div>
-                            <div class="text-item">${item.height}，${item.weight}</div><br>
-                            <div class="text-item">${item.education}，${item.profession}，${item.income}</div>
-                            <div class="text-item">${item.house}，${item.smoke}</div>
-                            <div class="text-item">${item.nation}，${item.marriage}，${item.marry_date}</div><br>
-                            <div class="text-item">${item.monologue}</div>
-                        </div>
-                    </div>
-                `
-                arr.push(str)
-            }
-            $('#wrap').html(arr.join(''))
-
-            $(".left-img").on('click', function (e) {
-                const src = e.target.currentSrc
-                if (src) {
-                    $("#popup").show()
-                    $("#popup-img").attr('src', src.split('?')[0])
-                }
-            })
-            $("#popup").on('click', function () {
-                $("#popup").hide()
-            })
-        }
         run()
     </script>
 </body>

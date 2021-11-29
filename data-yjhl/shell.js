@@ -3,7 +3,7 @@ const child_process = require('child_process')
 
 const TOTAL_LIST = []
 let PAGE = 1
-const COOKIE = 'sm8p641u6i5p0an7fnpdhl4627'
+const COOKIE = 'g3vi35nkbuq7tidi5prkavkc6l'
 
 // 执行curl，返回数据
 function doCurl(curl) {
@@ -35,7 +35,7 @@ function run() {
             TOTAL_LIST.push(...list)
 
             if (resData.current_page >= resData.last_page) {
-                fs.writeFile('./yjhl.json', JSON.stringify(TOTAL_LIST), function (err) {
+                fs.writeFile('./data.json', JSON.stringify(TOTAL_LIST), function (err) {
                     if (!err) {
                         console.log('写入成功！')
                     } else {

@@ -1,5 +1,5 @@
 易结婚恋数据爬取
 
-node index，可生成yjhl.json
+node shell.js，可生成data.json
 
-将json中数据复制到yjhl.js以备份，浏览器打开yjhl.html可预览
+将json中数据复制到data.js以备份，浏览器打开yjhl.html可预览
