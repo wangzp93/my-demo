@@ -1,9 +1,11 @@
 const fs = require('fs')
+const path = require('path')
 const child_process = require('child_process')
 
 const TOTAL_LIST = []
 let PAGE = 1
-const COOKIE = 'g3vi35nkbuq7tidi5prkavkc6l'
+const COOKIE = 'rvdbtf39b1bvshaf3gu2es7925'
+const TIME_OUT = 3 // 间隔时间
 
 // 执行curl，返回数据
 function doCurl(curl) {
@@ -25,7 +27,7 @@ function getCurl(page) {
 
 function run() {
     const curl = getCurl(PAGE)
-    console.log('爬取数据中，请稍后...')
+    console.log(`爬取数据中，当前第${PAGE}页，请稍后...`)
     doCurl(curl).then(r=> {
         const res = JSON.parse(r)
         if (res.code === 0) {
@@ -35,7 +37,7 @@ function run() {
             TOTAL_LIST.push(...list)
 
             if (resData.current_page >= resData.last_page) {
-                fs.writeFile('./data.json', JSON.stringify(TOTAL_LIST), function (err) {
+                fs.writeFile(path.resolve(__dirname, './data.json'), JSON.stringify(TOTAL_LIST), function (err) {
                     if (!err) {
                         console.log('写入成功！')
                     } else {
@@ -44,10 +46,10 @@ function run() {
                 })
                 clearInterval(timer)
             } else {
-                console.log('等待5s，开始下一次爬取...')
+                console.log(`等待${TIME_OUT}s，开始下一次爬取...`)
             }
         }
     })
 }
 
-const timer = setInterval(run, 5000)
+const timer = setInterval(run, TIME_OUT * 1000)
