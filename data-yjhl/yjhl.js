@@ -13,8 +13,9 @@ function run() {
   for (let i=0; i<LIST.length; i++) {
     const item = LIST[i]
     if (
-      (item.education !== '研究生' && item.education !== '本科' && item.education !== '专科')
-      || item.age > 31
+      (item.education !== '研究生' && item.education !== '本科' && item.education !== '大专')
+      ||
+      item.age > 31
       || item.born_data.includes('北京')
       || item.marriage === '离异'
     ) {
