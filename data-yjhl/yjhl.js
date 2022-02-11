@@ -10,6 +10,11 @@ function run() {
       return b.create_time - a.create_time
     })
   }
+  if (false) {
+    LIST.sort(function(a, b) {
+      return b.external_get - a.external_get
+    })
+  }
   for (let i=0; i<LIST.length; i++) {
     const item = LIST[i]
     if (
@@ -40,7 +45,9 @@ function run() {
                             <div class="text-item">${item.birthday}</div>
                             <div class="text-item">${item.age}岁</div><br>
                             <div class="text-item">${item.born_data}</div>
-                            <div class="text-item">${item.height}，${item.weight}</div><br>
+                            <div class="text-item">${item.height}，${item.weight}</div>
+                            <div class="text-item">VIP：${item.vip}</div>
+                            <div class="text-item">微信被获取次数：${item.external_get}</div><br>
                             <div class="text-item">${item.education}，${item.profession}，${item.income}</div>
                             <div class="text-item">${item.house}，${item.smoke}</div>
                             <div class="text-item">${item.nation}，${item.marriage}，${item.marry_date}</div><br>
