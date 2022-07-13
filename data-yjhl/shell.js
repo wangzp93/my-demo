@@ -4,7 +4,7 @@ const child_process = require('child_process')
 
 const TOTAL_LIST = []
 let PAGE = 1
-const COOKIE = 'rvdbtf39b1bvshaf3gu2es7925'
+const COOKIE = '8t1qi59avqg85b35kpfed61lj5'
 const TIME_OUT = 3 // 间隔时间
 
 // 执行curl，返回数据
