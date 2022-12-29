@@ -12,9 +12,9 @@
   "author": "wzp",
   "license": "ISC",
   "dependencies": {
-    "css-loader": "^0.28.11",
-    "style-loader": "^0.21.0",
-    "webpack": "^3.8.1"
+    "css-loader": "^6.7.3",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
     "jquery": "^3.3.1",
